@@ -1,10 +1,6 @@
 package org.testy.costam;
 
-
-
-
 public class Main extends Thread{
-	
 	
 	private int val;
 	private Main(int val){
@@ -13,26 +9,25 @@ public class Main extends Thread{
 	
 	
 	public void run(){
-		/*try {
-			//Thread.sleep((int)(Math.random ()*500)+5);
-			//Thread.sleep(200);			
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}*/
-        System.out.println("Therad " + this.val);
+        System.out.println("T " + this.val);
         Druk druk = Druk.getInstance();
         druk.add(this.val);
 	}
 	
 	
-	
-
-	
-	
-	
 	public static void main(String[] args) throws InterruptedException {
 		
 		System.out.println(" - - - - - - - - - - - - - - - - - - - - - - S T A R T - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - ");
+		
+		Druk druk = Druk.getInstance();
+		
+		for(int i=0; i<15; i++){
+			druk.add(i);
+			Thread.sleep(40);
+		}
+		
+		
+		/*
 		
 		for(int i=0; i<5; i++){
 			(new Main(i)).start();
@@ -55,7 +50,7 @@ public class Main extends Thread{
 		}
 		
 		
-		
+		*/
 		
 		
         

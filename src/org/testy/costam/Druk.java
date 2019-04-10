@@ -23,22 +23,23 @@ public final class Druk {
         return INSTANCE;
     }
     
+    
     public void add(int value){
     	kolejka.add(value);
-    	System.out.println("+ " + value);
+    	System.out.println("        +" + value);
     	
     	Thread t = new Thread(new Runnable() {
     	    public void run() {
     	    	
     	    	synchronized(lock){
-    	    		System.out.print("\n" + value + " . . .");
+    	    		System.out.println(value + " . . .");
         	    	try {
     					//wait();
-    					Thread.sleep(1000);
+    					Thread.sleep(5+value*20);
     				} catch (InterruptedException e) {
     					e.printStackTrace();
     				}
-        	    	System.out.println(". . . " + value);
+        	    	System.out.println("           . . . " + value);
     	    	}
     	    	
     	    }
