@@ -13,12 +13,15 @@ public class Main extends Thread{
 	
 	
 	public void run(){
-		try {
-			Thread.sleep((int)(Math.random ()*20)+5);
+		/*try {
+			//Thread.sleep((int)(Math.random ()*500)+5);
+			//Thread.sleep(200);			
 		} catch (InterruptedException e) {
 			e.printStackTrace();
-		}
+		}*/
         System.out.println("Therad " + this.val);
+        Druk druk = Druk.getInstance();
+        druk.add(this.val);
 	}
 	
 	
@@ -27,12 +30,34 @@ public class Main extends Thread{
 	
 	
 	
-	public static void main(String[] args) {
+	public static void main(String[] args) throws InterruptedException {
 		
-		for(int i=0; i<10; i++){
+		System.out.println(" - - - - - - - - - - - - - - - - - - - - - - S T A R T - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - ");
+		
+		for(int i=0; i<5; i++){
 			(new Main(i)).start();
 		}
-		 
+		Thread.sleep(300);
+		
+		for(int i=5; i<10; i++){
+			(new Main(i)).start();
+		}
+		Thread.sleep(300);
+		
+		for(int i=10; i<15; i++){
+			(new Main(i)).start();
+		}
+		
+		Thread.sleep(300);
+		
+		for(int i=15; i<20; i++){
+			(new Main(i)).start();
+		}
+		
+		
+		
+		
+		
         
 		/*
 		Main m = new Main();

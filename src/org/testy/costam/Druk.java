@@ -3,46 +3,52 @@ package org.testy.costam;
 import java.util.ArrayList;
 import java.util.List;
 
-public final class Druk extends Thread {
+public final class Druk {
 	
-	private final Object lock = new Object();
+	private static Druk INSTANCE;
 	
-	private static List<Integer> buf = new ArrayList<Integer>();;
+	private Object lock = new Object();
+	private List<Integer> kolejka = new ArrayList<Integer>();
 	
-	public static void add(int el){
-		System.out.println("Dodaje zadanie " + el);
-		buf.add(el);
-		Thread t = new Thread();
-		
-		//Wyslij w = new Wyslij();
-	}
+	private Druk(){
+    }
+
 	
-	
-	
-	private class Wyslij extends Thread {
-		public  void  run() {
-			synchronized(lock) {
-				
-			}
-			while(!buf.isEmpty()) {
-				try {
-					lock.wait();
-					Thread.sleep(2000);
-					lock.notify();
-				}
-				catch(InterruptedException e) {
-					e.printStackTrace();
-				}
-			}
-			
-		}
-	}
-	
-	
-	
-	
-	
-	
+    public static Druk getInstance() {
+        if (INSTANCE == null)
+            synchronized (Druk.class) {
+                if (INSTANCE == null)
+                    INSTANCE = new Druk();
+            }
+        return INSTANCE;
+    }
+    
+    public void add(int value){
+    	kolejka.add(value);
+    	System.out.println("+ " + value);
+    	
+    	Thread t = new Thread(new Runnable() {
+    	    public void run() {
+    	    	
+    	    	synchronized(lock){
+    	    		System.out.print("\n" + value + " . . .");
+        	    	try {
+    					//wait();
+    					Thread.sleep(1000);
+    				} catch (InterruptedException e) {
+    					e.printStackTrace();
+    				}
+        	    	System.out.println(". . . " + value);
+    	    	}
+    	    	
+    	    }
+    	});
+
+    	t.start();
+    	
+    }
+
+
 	
 	
 }
