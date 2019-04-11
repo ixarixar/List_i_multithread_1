@@ -24,7 +24,7 @@ public final class Druk {
         return INSTANCE;
     }
     
-    public class  Drukarka{
+    public class Drukarka{
     	private String hostName;
     	private String printerName;
     	
