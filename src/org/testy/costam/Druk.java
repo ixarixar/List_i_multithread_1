@@ -48,7 +48,11 @@ public final class Druk {
     }
     
     
-    
+    /**
+     * 
+     * @param printerName - nazwa drukarki
+     * @param hostName - nazwa hosta (adres ip)
+     */
 	public void addDrukarka(String printerName, String hostName) {
     	//System.out.println("addDrukarka: printerName: '" + printerName + "' hostName: '" + hostName + "'");
     	drukarki.add(new Drukarka(printerName, hostName));
@@ -83,11 +87,10 @@ public final class Druk {
 	    					String printDada = "";
 	    					printDada = "N\n";//Clear Image Buffer
 	    					printDada+= "I8,B,048\n";//Character set selection - 8 bit data, B - Windows1250, 048 - country code 
-	    					//ptext+= "B10,50,0,2C,2,5,50,B,\""+ids+"\"\n";
 	    					printDada+=data;
 	    					printDada+="P1\n";//Print
 	    								
-	    					System.out.print(el.getPrinterName() + ": " +printDada);
+	    					//System.out.print(el.getPrinterName() + ": " +printDada);
 	    					
 	    					lpr.printString(printDada, "", el.getHostName(), el.getPrinterName(), "");
 	    					
